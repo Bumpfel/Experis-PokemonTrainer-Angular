@@ -29,13 +29,12 @@ export class FetchService {
 
     return pokemons
   }
-  
 
   async getPokemon(id: number): Promise<Pokemon> {
     const response = await fetch(`${environment.apiUrl}/pokemon/${id}`)
     const pokemon = JSON.parse(await response.text())
     
-    const baseStats: any = {}
+    const baseStats: { [key: string]: number } = {}
     pokemon.stats.forEach((item: any) => baseStats[item.stat.name] = item.base_stat)
     
     return {
