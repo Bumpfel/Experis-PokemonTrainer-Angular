@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from 'src/app/interfaces/pokemon';
+import { Pokemon } from 'src/app/models/pokemon';
 import { FetchService } from 'src/app/services/fetch.service';
 
 @Component({
