@@ -1,0 +1,19 @@
+<p>pokemondetails works!</p>
+
+<div *ngFor="let pokemon of pokemons" id="pokemon-card">
+    <div>
+    <p>Name:  <span>{{ pokemon.name }}</span></p>
+    <img src = "{{pokemon.imgUrl}}">
+    <p>Types: <span>{{ pokemon.types }}</span></p>
+    <p>Base stats: <span>{{ pokemon.baseStats }}</span></p>
+    <p>Height: <span>{{ pokemon.height }}</span></p>
+    <p>Weight: <span>{{ pokemon.weight }}</span></p>
+    <p>abilities: <span>{{ pokemon.abilities }}</span></p>
+    <p>Base XP: <span>{{ pokemon.baseXP }}</span></p>
+    <p>Moves: <span>{{ pokemon.moves }}</span></p>
+    </div>
+</div> 
+<button (click)="getPokemonDetail(detailId)">Show Pokemons!</button>
+<div>
+    
+</div>

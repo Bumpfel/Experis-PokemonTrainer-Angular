@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 // Components
 import { AppComponent } from './app.component';
 import { PokemonCatalogueComponent } from 'src/app/pages/pokemoncatalogue/pokemoncatalogue.component';
+import { PokemonDetailsComponent } from './pages/pokemondetails/pokemondetails.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PokemonCatalogueComponent
+    PokemonCatalogueComponent,
+    PokemonDetailsComponent
   ],
   imports: [
     BrowserModule,

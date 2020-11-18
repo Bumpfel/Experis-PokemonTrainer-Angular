@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pokemon } from 'src/app/interfaces/pokemon';
+import { Pokemon } from 'src/app/models/pokemon';
 import { FetchService } from 'src/app/services/fetch.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { FetchService } from 'src/app/services/fetch.service';
 })
 export class PokemonCatalogueComponent implements OnInit {
 
-  pokemonz: Pokemon[] | undefined;
+  pokemons: Pokemon[] | undefined;
   
   constructor(private fetchService: FetchService) {
     console.log(this.fetchService);
@@ -20,7 +20,7 @@ export class PokemonCatalogueComponent implements OnInit {
 
   getPokemons() {
   this.fetchService.getPokemons().then(data => {
-    this.pokemonz = data;
+    this.pokemons = data;
   });
   }
 

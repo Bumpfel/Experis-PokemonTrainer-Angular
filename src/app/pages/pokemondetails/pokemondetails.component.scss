@@ -1,0 +1,17 @@
+#pokemon-card{
+    border-style: groove;
+    display: inline-block;
+} 
+#pokemon-card > div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+}
+img {
+    height: 250px;
+    width: 250px;
+}
+
+span::first-letter {
+    text-transform: uppercase;
+}
