@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Pokemon } from '../interfaces/pokemon';
+
+import { environment } from 'src/environments/environment';
+import { Pokemon } from '../models/pokemon';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +12,12 @@ export class FetchService {
 
   private fetchLimit: number = 20
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   async getPokemons(page: number = 0): Promise<Pokemon[]> {
     const offset = page * this.fetchLimit
 
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${this.fetchLimit}&offset=${offset}`)
+    const response = await fetch(`${environment.apiUrl}/pokemon?limit=${this.fetchLimit}&offset=${offset}`)
     const parsed = JSON.parse(await response.text())
     const results = parsed.results
     const pokemons: Pokemon[] = []
@@ -26,9 +30,10 @@ export class FetchService {
 
     return pokemons
   }
+  
 
   async getPokemon(id: number): Promise<Pokemon> {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const response = await fetch(`${environment.apiUrl}/pokemon/${id}`)
     const pokemon = JSON.parse(await response.text())
     
     const baseStats = new Map<string, number>()
