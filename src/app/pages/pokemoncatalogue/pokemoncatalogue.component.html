@@ -1,12 +1,12 @@
 <p>Pokemon Catalogue works!</p>
 
-<div *ngFor="let pokemon of pokemons" id="pokemon-card">
+<div *ngFor="let pokemon of pokemonz" id="pokemon-card">
     <div>
-    <p>Name: {{ pokemon.name }}</p>
+    Name:<p> {{ pokemon.name }}</p>
     <img src = "{{pokemon.imgUrl}}">
     </div>
-</div>
-
+</div> 
+<button (click)="getPokemons()">Show Pokemons!</button>
 <div>
     
 </div>

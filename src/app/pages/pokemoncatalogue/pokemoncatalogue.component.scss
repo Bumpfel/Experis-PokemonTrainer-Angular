@@ -11,3 +11,7 @@ img {
     height: 250px;
     width: 250px;
 }
+
+p::first-letter {
+    text-transform: uppercase;
+}
