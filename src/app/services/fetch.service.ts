@@ -7,16 +7,13 @@ import { Pokemon } from '../interfaces/pokemon';
 export class FetchService {
 
   private fetchLimit: number = 20
-  // private prev: string | undefined
-  // private next: string | undefined
 
   constructor() { }
 
   async getPokemons(page: number = 0): Promise<Pokemon[]> {
-    let response = undefined
     const offset = page * this.fetchLimit
 
-    response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${this.fetchLimit}&offset=${offset}`)
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${this.fetchLimit}&offset=${offset}`)
     const parsed = JSON.parse(await response.text())
     const results = parsed.results
     const pokemons: Pokemon[] = []
@@ -28,5 +25,24 @@ export class FetchService {
     })
 
     return pokemons
+  }
+
+  async getPokemon(id: number): Promise<Pokemon> {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const pokemon = JSON.parse(await response.text())
+    
+    const baseStats = new Map<string, number>()
+
+    return {
+      name: pokemon.name,
+      imgUrl: pokemon.sprites.front_default,
+      types: pokemon.types.map((item: any) => item.type.name),
+      baseStats: pokemon.stats.forEach((item: any) => baseStats.set(item.stat.name, item.base_stat)),
+      height: pokemon.height,
+      weight: pokemon.weight,
+      abilities: pokemon.abilities.map((item: any) => item.ability.name),
+      baseXP: pokemon.base_experience,
+      moves: pokemon.moves.map((item: any) => item.move.name)
+    }
   }
 }
