@@ -22,9 +22,7 @@ import { SelectTrainerComponent } from './pages/select-trainer/select-trainer.co
   declarations: [
     AppComponent,
     PokemonCatalogueComponent,
-
-
-
+    MenuComponent,
     SelectTrainerComponent
   ],
   imports: [
