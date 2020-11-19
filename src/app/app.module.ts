@@ -16,14 +16,16 @@ import { FetchService } from './services/fetch.service';
 
 
 import { SelectTrainerComponent } from './pages/select-trainer/select-trainer.component';
+import { TrainerComponent } from './pages/trainer/trainer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonCatalogueComponent,
+    SelectTrainerComponent,
+    TrainerComponent
     MenuComponent,
-    SelectTrainerComponent
   ],
   imports: [
     BrowserModule,
