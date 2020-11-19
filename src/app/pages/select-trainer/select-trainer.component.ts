@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Trainer } from 'src/app/models/trainer';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,21 +12,21 @@ export class SelectTrainerComponent implements OnInit {
 
   private _activeTrainer: Trainer | undefined
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.updateActiveTrainer()
+    if(this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('/trainer')
+    }
   }
   
   login(name: string): void {
     this.authService.login(name)
-    this.updateActiveTrainer()
   }
 
   logout() {
     if(confirm('Logging out removes the active trainer. Are you sure?')) {
       this.authService.logout()
-      this.updateActiveTrainer()
     }
   }
 
@@ -38,10 +39,6 @@ export class SelectTrainerComponent implements OnInit {
       return 'Trainer: ' + this._activeTrainer.name
     }
     return 'Not logged in'
-  }
-
-  private updateActiveTrainer() {
-    this._activeTrainer = this.authService.getLoggedInTrainer()
   }
 
 }
