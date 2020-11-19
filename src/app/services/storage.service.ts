@@ -6,15 +6,23 @@ import { Trainer } from '../models/trainer';
 })
 export class StorageService {
 
-  private trainersKey: string = 'trainers'
+  private trainerKey: string = 'trainer'
 
   constructor() { }
 
   save(trainer: Trainer): void {
-    localStorage.setItem(this.trainersKey, JSON.stringify(trainer))
+    localStorage.setItem(this.trainerKey, JSON.stringify(trainer))
   }
 
-  load() {
-    return localStorage.getItem(this.trainersKey)
+  resetActiveTrainer() {
+    localStorage.removeItem(this.trainerKey)
+  }
+
+  load(): Trainer | undefined {
+    const stored = localStorage.getItem(this.trainerKey)
+    if(stored) {
+      return JSON.parse(stored)
+    }
+    return undefined
   }
 }

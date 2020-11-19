@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Trainer } from '../models/trainer';
 import { StorageService } from './storage.service';
@@ -8,19 +9,31 @@ import { StorageService } from './storage.service';
 })
 export class AuthService {
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService, private router: Router) { }
 
   login(name: string): boolean {
-    if(name.trim().length === 0) {
-      return false
+    if(this.validateName(name)) {
+      this.router.navigateByUrl('/trainer')
+      this.storageService.save({ name })
+      return true
     }
-    
-    const trainer: Trainer = { name }
-    this.storageService.save(trainer)
-    return true
+    return false
+  }
+
+  logout() {
+    // destroys current trainer
+    this.storageService.resetActiveTrainer()
   }
 
   isLoggedIn(): boolean {
     return this.storageService.load() != null
+  }
+
+  getLoggedInTrainer(): Trainer | undefined {
+    return this.storageService.load()
+  }
+
+  private validateName(name: string): boolean {
+    return name.trim().length !== 0
   }
 }
