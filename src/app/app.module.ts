@@ -7,13 +7,17 @@ import { FormsModule } from '@angular/forms';
 // Components
 import { AppComponent } from './app.component';
 import { PokemonCatalogueComponent } from 'src/app/pages/pokemoncatalogue/pokemoncatalogue.component';
+import { MenuComponent } from './menu/menu.component';
 
 // Services
 import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
 import { FetchService } from './services/fetch.service';
+
+
 import { SelectTrainerComponent } from './pages/select-trainer/select-trainer.component';
 import { TrainerComponent } from './pages/trainer/trainer.component';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +25,7 @@ import { TrainerComponent } from './pages/trainer/trainer.component';
     PokemonCatalogueComponent,
     SelectTrainerComponent,
     TrainerComponent
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
