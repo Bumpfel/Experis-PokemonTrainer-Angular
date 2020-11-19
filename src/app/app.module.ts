@@ -7,16 +7,19 @@ import { FormsModule } from '@angular/forms';
 // Components
 import { AppComponent } from './app.component';
 import { PokemonCatalogueComponent } from 'src/app/pages/pokemoncatalogue/pokemoncatalogue.component';
+import { MenuComponent } from './menu/menu.component';
 
 // Services
 import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
 import { FetchService } from './services/fetch.service';
+// import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PokemonCatalogueComponent
+    PokemonCatalogueComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
