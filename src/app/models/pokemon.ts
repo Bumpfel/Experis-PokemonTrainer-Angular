@@ -3,7 +3,7 @@ export interface Pokemon {
     imgUrl: string
 
     types?: string[]
-    baseStats?: Map<string, number>
+    baseStats?: { [key: string]: number }
     height?: number
     weight?: number
     abilities?: string[]
