@@ -6,22 +6,52 @@ import { Trainer } from '../models/trainer';
 })
 export class StorageService {
 
-  private trainerKey: string = 'trainer'
+  private trainersKey: string = 'trainers'
+  private activeTrainerKey: string = 'activeTrainer'
 
   constructor() { }
 
-  save(trainer: Trainer): void {
-    localStorage.setItem(this.trainerKey, JSON.stringify(trainer))
+  /**
+   * Sets the trainer as the active trainer and saves it to an array of available trainers if isNew is set to true
+   * @param trainer 
+   * @param isNew controls whether a new instance should be saved or not
+   */
+  save(trainer: Trainer, isNew: boolean): void {
+    localStorage.setItem(this.activeTrainerKey, JSON.stringify(trainer))
+        
+    const stored = localStorage.getItem(this.trainersKey)
+    
+    let trainers = []
+    if(stored) {
+      trainers = JSON.parse(stored)
+
+      if(isNew) {
+        trainers.push(trainer)
+      }
+    } else {
+      trainers.push(trainer)
+    }
+
+    localStorage.setItem(this.trainersKey, JSON.stringify(trainers))
+  }
+
+  getActiveTrainer(): Trainer | undefined {
+    const stored = localStorage.getItem(this.activeTrainerKey)
+    if(stored) {
+      return JSON.parse(stored)
+    }
+    return undefined
   }
 
   resetActiveTrainer() {
-    localStorage.removeItem(this.trainerKey)
+    localStorage.removeItem(this.activeTrainerKey)
   }
 
-  load(): Trainer | undefined {
-    const stored = localStorage.getItem(this.trainerKey)
+  findTrainer(name: string): Trainer | undefined {
+    const stored =  localStorage.getItem(this.trainersKey)
     if(stored) {
-      return JSON.parse(stored)
+      const trainers: Trainer[] = JSON.parse(stored)
+      return trainers.find((trainer: Trainer) => trainer.name === name)
     }
     return undefined
   }
