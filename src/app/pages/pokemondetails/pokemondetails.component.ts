@@ -6,23 +6,21 @@ import { FetchService } from 'src/app/services/fetch.service';
 @Component({
   selector: 'app-pokemondetails',
   templateUrl: './pokemondetails.component.html',
-  styleUrls: ['./pokemondetails.component.scss']
+  styleUrls: ['./pokemondetails.component.scss'], 
 })
 export class PokemonDetailsComponent implements OnInit {
 
   pokemons: Pokemon[] | undefined;
   detailId = this.route.snapshot.params['id'];
 
+
   constructor(private fetchService: FetchService, public route: ActivatedRoute) {
    }
 
   ngOnInit(): void {
-  }
-
-  getPokemonDetail(id: any) {
-    this.fetchService.getPokemon(id).then(data => {
+      this.fetchService.getPokemon(this.detailId).then(data => {
       this.pokemons = [data];
     });
-    }
-
+  }
+  
 }

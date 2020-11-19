@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NavigationEnd } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokemon';
@@ -18,15 +19,16 @@ export class FetchService {
 
     const response = await fetch(`${environment.apiUrl}/pokemon?limit=${this.fetchLimit}&offset=${offset}`)
     const parsed = JSON.parse(await response.text())
+    
     const results = parsed.results
     const pokemons: Pokemon[] = []
-  
+     
     results.forEach(async (pokemon: any) => {
       const resp = await fetch(pokemon.url)
       const details = JSON.parse(await resp.text())
-      pokemons.push({ name: pokemon.name, imgUrl: details.sprites.front_default})
+      pokemons.push({ id: details.id, name: pokemon.name, imgUrl: details.sprites.front_default})
     })
-
+    
     return pokemons
   }
 
@@ -38,6 +40,7 @@ export class FetchService {
     pokemon.stats.forEach((item: any) => baseStats[item.stat.name] = item.base_stat)
     
     return {
+      id: pokemon.id,
       name: pokemon.name,
       imgUrl: pokemon.sprites.front_default,
       types: pokemon.types.map((item: any) => item.type.name),

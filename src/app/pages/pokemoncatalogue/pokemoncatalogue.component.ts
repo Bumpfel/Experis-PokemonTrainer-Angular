@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from 'src/app/models/pokemon';
 import { FetchService } from 'src/app/services/fetch.service';
 
@@ -10,18 +11,24 @@ import { FetchService } from 'src/app/services/fetch.service';
 export class PokemonCatalogueComponent implements OnInit {
 
   pokemons: Pokemon[] | undefined;
-  
-  constructor(private fetchService: FetchService) {
+  detailId = this.route.snapshot.params['id'];
+
+  constructor(private fetchService: FetchService, public route: ActivatedRoute) {
     console.log(this.fetchService);
    }
 
   ngOnInit(): void {
+    
+    this.fetchService.getPokemons().then(data => {
+    this.pokemons = data;
+    });
+  
   }
 
-  getPokemons() {
-  this.fetchService.getPokemons().then(data => {
-    this.pokemons = data;
-  });
-  }
+  getDetails(id: any) {
+    this.fetchService.getPokemon(id).then(data => {
+      this.pokemons = [data];
+    });
+    }
 
 }

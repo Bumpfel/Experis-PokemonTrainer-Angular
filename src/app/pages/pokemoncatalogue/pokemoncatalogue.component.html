@@ -1,13 +1,14 @@
-<p>Pokemon Catalogue works!</p>
-
+<div class="container">
 <div *ngFor="let pokemon of pokemons" id="pokemon-card">
     <div>
-    Name:<p> {{ pokemon.name }}</p>
-    <img src = "{{pokemon.imgUrl}}">
+    <p> {{ pokemon.name }} 
+        <span *ngIf="pokemon.id<=9">#00{{ pokemon.id }}</span>
+        <span *ngIf="pokemon.id>=10">#0{{ pokemon.id }}</span>
+        <span *ngIf="pokemon.id>=100">#{{ pokemon.id }}</span>
+    </p> 
+    <a [routerLink]="['/pokemons/details/',pokemon.id]"><img src = "{{pokemon.imgUrl}}"></a>
+    <br>
+    <button class="button">I choose you!</button>
     </div>
 </div> 
-<button (click)="getPokemons()">Show Pokemons!</button>
-<div>
-    
 </div>
-

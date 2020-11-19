@@ -9,7 +9,7 @@ const routes: Routes = [
     component: PokemonCatalogueComponent
   },
   {
-    path: 'details/:id',
+    path: 'pokemons/details/:id',
     component: PokemonDetailsComponent
   },
 ];
