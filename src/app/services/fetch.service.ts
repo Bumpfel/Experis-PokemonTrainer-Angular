@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
+
+import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokemon';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,7 @@ export class FetchService {
   async getPokemons(page: number = 0): Promise<Pokemon[]> {
     const offset = page * this.fetchLimit
 
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${this.fetchLimit}&offset=${offset}`)
+    const response = await fetch(`${environment.apiUrl}/pokemon?limit=${this.fetchLimit}&offset=${offset}`)
     const parsed = JSON.parse(await response.text())
     const results = parsed.results
     const pokemons: Pokemon[] = []
@@ -28,16 +31,17 @@ export class FetchService {
   }
 
   async getPokemon(id: number): Promise<Pokemon> {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const response = await fetch(`${environment.apiUrl}/pokemon/${id}`)
     const pokemon = JSON.parse(await response.text())
     
-    const baseStats = new Map<string, number>()
-
+    const baseStats: { [key: string]: number } = {}
+    pokemon.stats.forEach((item: any) => baseStats[item.stat.name] = item.base_stat)
+    
     return {
       name: pokemon.name,
       imgUrl: pokemon.sprites.front_default,
       types: pokemon.types.map((item: any) => item.type.name),
-      baseStats: pokemon.stats.forEach((item: any) => baseStats.set(item.stat.name, item.base_stat)),
+      baseStats,
       height: pokemon.height,
       weight: pokemon.weight,
       abilities: pokemon.abilities.map((item: any) => item.ability.name),
