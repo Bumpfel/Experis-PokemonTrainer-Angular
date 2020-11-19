@@ -1,0 +1,14 @@
+{{ loggedInTrainer }}
+<br>
+<br>
+
+
+<form (ngSubmit)="login(name.value)" *ngIf="!isLoggedIn else notLoggedIn">
+    <input type="text" placeholder="Choose a new trainer name" #name>
+    <br>
+    <button>log in</button>
+</form>
+
+<ng-template #notLoggedIn>
+    <button (click)="logout()">log out</button>
+</ng-template>

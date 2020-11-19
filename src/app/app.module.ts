@@ -12,11 +12,13 @@ import { PokemonCatalogueComponent } from 'src/app/pages/pokemoncatalogue/pokemo
 import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
 import { FetchService } from './services/fetch.service';
+import { SelectTrainerComponent } from './pages/select-trainer/select-trainer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PokemonCatalogueComponent
+    PokemonCatalogueComponent,
+    SelectTrainerComponent
   ],
   imports: [
     BrowserModule,
