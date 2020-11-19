@@ -24,7 +24,7 @@ import { TrainerComponent } from './pages/trainer/trainer.component';
     AppComponent,
     PokemonCatalogueComponent,
     SelectTrainerComponent,
-    TrainerComponent
+    TrainerComponent,
     MenuComponent,
   ],
   imports: [
