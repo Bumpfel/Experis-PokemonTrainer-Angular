@@ -16,29 +16,21 @@ export class SelectTrainerComponent implements OnInit {
 
   ngOnInit() {
     if(this.authService.isLoggedIn()) {
-      this.router.navigateByUrl('/trainer')
+      this.redirect()
     }
   }
   
   login(name: string): void {
-    this.authService.login(name)
+    if(this.authService.login(name)) {
+      this.redirect()
+    }
   }
 
   logout() {
-    if(confirm('Logging out removes the active trainer. Are you sure?')) {
-      this.authService.logout()
-    }
+    this.authService.logout()
   }
 
-  get isLoggedIn(): boolean {
-    return this.authService.isLoggedIn()
+  private redirect() {
+    this.router.navigateByUrl('/trainer')
   }
-
-  get loggedInTrainer(): string {
-    if(this._activeTrainer) {
-      return 'Trainer: ' + this._activeTrainer.name
-    }
-    return 'Not logged in'
-  }
-
 }

@@ -9,28 +9,30 @@ import { StorageService } from './storage.service';
 })
 export class AuthService {
 
-  constructor(private storageService: StorageService, private router: Router) { }
+  constructor(private storageService: StorageService) { }
 
   login(name: string): boolean {
-    if(this.validateName(name)) {
-      this.router.navigateByUrl('/trainer')
-      this.storageService.save({ name })
-      return true
+    const existingTrainer = this.storageService.findTrainer(name)
+    
+    if(existingTrainer && !this.validateName(name)) {
+      return false
     }
-    return false
+
+    const trainer = existingTrainer || { name }
+    this.storageService.save(trainer, existingTrainer === undefined)
+    return true
   }
 
   logout() {
-    // destroys current trainer
     this.storageService.resetActiveTrainer()
   }
 
   isLoggedIn(): boolean {
-    return this.storageService.load() != null
+    return this.storageService.getActiveTrainer() != undefined
   }
 
   getLoggedInTrainer(): Trainer | undefined {
-    return this.storageService.load()
+    return this.storageService.getActiveTrainer()
   }
 
   private validateName(name: string): boolean {
