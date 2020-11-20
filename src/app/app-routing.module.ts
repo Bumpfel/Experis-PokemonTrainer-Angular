@@ -8,10 +8,11 @@ import { SelectTrainerComponent } from './pages/select-trainer/select-trainer.co
 import { TrainerComponent } from './pages/trainer/trainer.component';
 
 const routes: Routes = [
+  { path: 'login', component: SelectTrainerComponent },
   { path: 'trainer', component: TrainerComponent, canActivate: [ AuthGuard ] },
   { path: 'pokemons', component: PokemonCatalogueComponent },
-  { path: '', component: SelectTrainerComponent },
   { path: 'pokemons/details/:id', component: PokemonDetailsComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
 ];
 
 @NgModule({
