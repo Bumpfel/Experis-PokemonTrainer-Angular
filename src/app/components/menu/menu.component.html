@@ -1,0 +1,12 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLinkActive="active" routerLink="/pokemons">Pokemon Catalogue</a>
+    <ng-container *ngIf="isLoggedIn else notLoggedIn">
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/trainer">My Pokemons</a>
+      <a class="nav-item nav-link" style="cursor: pointer" (click)="handleSignOut()">Sign Out</a>
+    </ng-container>
+    <ng-template #notLoggedIn>
+      <a class="nav-item nav-link" routerLink="/">Sign in</a>
+    </ng-template>
+  </div>
+</nav>
