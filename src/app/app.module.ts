@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 // Components
 import { AppComponent } from './app.component';
 import { PokemonCatalogueComponent } from 'src/app/pages/pokemoncatalogue/pokemoncatalogue.component';
+import { PokemonDetailsComponent } from './pages/pokemondetails/pokemondetails.component';
 import { MenuComponent } from './menu/menu.component';
 
 // Services
@@ -21,6 +22,7 @@ import { TrainerComponent } from './pages/trainer/trainer.component';
   declarations: [
     AppComponent,
     PokemonCatalogueComponent,
+    PokemonDetailsComponent
     SelectTrainerComponent,
     TrainerComponent,
     MenuComponent,

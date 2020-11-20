@@ -1,0 +1,91 @@
+//IDs
+#pokemon-card{
+    background-color: #0080ff;
+    border-color: #B3A125;
+    border-style: outset;
+    border-width: 10px;
+    font-family: 'pokemon-font', monospace;
+    margin: 15%;
+    text-align: center;
+} 
+
+#base-stats{
+    background-color: #D3D3D3;
+    border-color: #B3A125;
+    border-style: outset;
+    border-width: 5px;
+    display: inline-block;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+    width: 50%;
+    height: auto;
+}
+
+#profile-stats{
+    background-color: #D3D3D3;
+    border-color: #B3A125;
+    border-style: outset;
+    border-width: 5px;
+    border-style: groove;
+    display: inline-block;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: auto;
+    margin: 10px;
+    padding: 10px;
+    width: 50%;
+}
+
+#moves{
+    background-color: #D3D3D3;
+    border-color: #B3A125;
+    border-style: outset;
+    border-width: 5px;
+    border-style: groove;
+    display: inline-block;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+    width: 95%;
+}
+
+//Classes
+.pokeName{
+    color: #FFFFFF;
+    font-size: 36px;
+}
+
+.backButton{
+    cursor: pointer;
+    position: relative;
+}
+
+.backButton:hover {
+    background-color: #3B4CCA;
+    cursor: pointer;
+}
+
+.backButton:active {
+    background-color: #feffe5;
+    cursor: pointer;
+    transform: translateY(4px);
+}
+
+//Elements
+img {
+    background-color: #D3D3D3;
+    border-style: groove;
+    border-width: 5px;
+    border-color: #B3A125;
+    cursor: pointer;
+    display: inline;
+    height: 250px;
+    width: 250px;
+}
+
+p::first-letter {
+    text-transform: uppercase;
+}

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NavigationEnd } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokemon';

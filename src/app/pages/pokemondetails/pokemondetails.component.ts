@@ -4,31 +4,23 @@ import { Pokemon } from 'src/app/models/pokemon';
 import { FetchService } from 'src/app/services/fetch.service';
 
 @Component({
-  selector: 'app-pokemoncatalogue',
-  templateUrl: './pokemoncatalogue.component.html',
-  styleUrls: ['./pokemoncatalogue.component.scss']
+  selector: 'app-pokemondetails',
+  templateUrl: './pokemondetails.component.html',
+  styleUrls: ['./pokemondetails.component.scss'], 
 })
-export class PokemonCatalogueComponent implements OnInit {
+export class PokemonDetailsComponent implements OnInit {
 
   pokemons: Pokemon[] | undefined;
   detailId = this.route.snapshot.params['id'];
 
+
   constructor(private fetchService: FetchService, public route: ActivatedRoute) {
-    console.log(this.fetchService);
    }
 
   ngOnInit(): void {
-    
-    this.fetchService.getPokemons().then(data => {
-    this.pokemons = data;
-    });
-  
-  }
-
-  getDetails(id: any) {
-    this.fetchService.getPokemon(id).then(data => {
+      this.fetchService.getPokemon(this.detailId).then(data => {
       this.pokemons = [data];
     });
-    }
-
+  }
+  
 }
