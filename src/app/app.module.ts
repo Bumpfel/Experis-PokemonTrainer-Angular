@@ -16,6 +16,7 @@ import { AuthService } from './services/auth.service';
 import { FetchService } from './services/fetch.service';
 import { SelectTrainerComponent } from './pages/select-trainer/select-trainer.component';
 import { TrainerComponent } from './pages/trainer/trainer.component';
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { TrainerComponent } from './pages/trainer/trainer.component';
     SelectTrainerComponent,
     TrainerComponent,
     MenuComponent,
+    PokemonCardComponent,
   ],
   imports: [
     BrowserModule,
