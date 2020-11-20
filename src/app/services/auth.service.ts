@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Trainer } from '../models/trainer';
 import { StorageService } from './storage.service';
@@ -14,7 +13,7 @@ export class AuthService {
   login(name: string): boolean {
     const existingTrainer = this.storageService.findTrainer(name)
     
-    if(existingTrainer && !this.validateName(name)) {
+    if(!existingTrainer && !this.validateName(name)) {
       return false
     }
 
@@ -28,7 +27,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return this.storageService.getActiveTrainer() != undefined
+    return Boolean(this.storageService.getActiveTrainer())
   }
 
   getLoggedInTrainer(): Trainer | undefined {
