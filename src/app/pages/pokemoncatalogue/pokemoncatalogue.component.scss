@@ -1,7 +1,4 @@
-.container{
-    margin: 5% 10%;
-}
-
+//IDs
 #pokemon-card{
     border-color: #3B4CCA;
     border-style: groove;
@@ -9,26 +6,25 @@
     color: #ffffff;
     display: inline-block;
     font-family: 'pokemon-font', monospace;
-    text-align: center;
     margin: 5px;
+    text-align: center;
 } 
 #pokemon-card > div {
     background-color: #4ca0ff;
-    padding: 10px;
     box-shadow: inset 0 0 0 7px #4ca0ff;
-}
-img {
-    background-color: #feffe5;
-    height: 200px;
-    width: 200px;
-    display: block;
-    border-style: groove;
-    border-width: 5px;
-    border-color: #CC0000;
+    padding: 10px;
 }
 
-p::first-letter {
-    text-transform: uppercase;
+#information:hover{
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    visibility: visible;
+}
+
+//Classes
+.container{
+    margin: 5% 10%;
 }
 
 .button:hover {
@@ -40,6 +36,21 @@ p::first-letter {
     transform: translateY(4px);
 }
 
+//Elements
+img {
+    background-color: #feffe5;
+    border-style: groove;
+    border-width: 5px;
+    border-color: #CC0000;
+    display: block;
+    height: 200px;
+    width: 200px;
+}
+
 img:active {
     transform: translateY(4px);
+}
+
+p::first-letter {
+    text-transform: uppercase;
 }
