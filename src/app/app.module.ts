@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PokemonCatalogueComponent } from 'src/app/pages/pokemoncatalogue/pokemoncatalogue.component';
 import { PokemonDetailsComponent } from './pages/pokemondetails/pokemondetails.component';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 // Services
 import { StorageService } from './services/storage.service';
@@ -22,7 +22,7 @@ import { TrainerComponent } from './pages/trainer/trainer.component';
   declarations: [
     AppComponent,
     PokemonCatalogueComponent,
-    PokemonDetailsComponent
+    PokemonDetailsComponent,
     SelectTrainerComponent,
     TrainerComponent,
     MenuComponent,
