@@ -1,0 +1,31 @@
+<div id="container">
+    <div *ngFor="let pokemon of pokemons" id="pokemon-card">
+        <br>
+        <strong><p class="pokeName"> {{ pokemon.name }} 
+        <span *ngIf="pokemon.id<=9">#00{{ pokemon.id }}</span>
+        <span *ngIf="pokemon.id>=10 && pokemon.id<100">#0{{ pokemon.id }}</span>
+        <span *ngIf="pokemon.id>=100">#{{ pokemon.id }}</span>
+        </p></strong>
+        <img src = "{{pokemon.imgUrl}}">
+        <p></p>
+        <div id="base-stats">
+            <p>Base stats: </p>
+                <div *ngFor="let basestat of pokemon.baseStats | keyvalue">
+                    <p>{{basestat.key}} : {{basestat.value}}</p>
+                </div>
+        </div>  
+        <div id="profile-stats">
+            <p>Profile: </p>
+            <p>Types: {{ pokemon.types }}</p>
+            <p>Height: {{ pokemon.height }}</p>
+            <p>Weight: {{ pokemon.weight }}</p>
+            <p>Abilities: {{ pokemon.abilities }}</p>
+            <p>Base XP: {{ pokemon.baseXP }}</p>
+        </div>
+        <div id="moves">
+            <p>Moves: </p>
+            <p>{{ pokemon.moves }}</p>
+            <a [routerLink]="['/pokemons/']"><button class="backButton">Go back</button></a>
+        </div>
+    </div>
+</div>
