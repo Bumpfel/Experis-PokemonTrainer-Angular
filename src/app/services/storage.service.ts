@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Trainer } from '../models/trainer';
 
+const TRAINER_KEY: string = 'trainers'
+const ACTIVE_TRAINER_KEY: string = 'activeTrainer'
+
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-
-  private trainersKey: string = 'trainers'
-  private activeTrainerKey: string = 'activeTrainer'
-
   constructor() { }
 
   /**
@@ -17,26 +16,25 @@ export class StorageService {
    * @param isNew controls whether a new instance should be saved or not
    */
   save(trainer: Trainer, isNew: boolean): void {
-    localStorage.setItem(this.activeTrainerKey, JSON.stringify(trainer))
-        
-    const stored = localStorage.getItem(this.trainersKey)
+    localStorage.setItem(ACTIVE_TRAINER_KEY, JSON.stringify(trainer))
     
-    let trainers = []
+    const stored = localStorage.getItem(TRAINER_KEY)
+    
+    let trainers: Trainer[] = []
     if(stored) {
       trainers = JSON.parse(stored)
-
-      if(isNew) {
-        trainers.push(trainer)
-      }
-    } else {
-      trainers.push(trainer)
+  
+      if(!isNew) {
+        trainers = trainers.filter((t: Trainer) => t.name !== trainer.name)
+      }  
     }
+    trainers.push(trainer)
 
-    localStorage.setItem(this.trainersKey, JSON.stringify(trainers))
+    localStorage.setItem(TRAINER_KEY, JSON.stringify(trainers))
   }
 
   getActiveTrainer(): Trainer | undefined {
-    const stored = localStorage.getItem(this.activeTrainerKey)
+    const stored = localStorage.getItem(ACTIVE_TRAINER_KEY)
     if(stored) {
       return JSON.parse(stored)
     }
@@ -44,11 +42,11 @@ export class StorageService {
   }
 
   resetActiveTrainer() {
-    localStorage.removeItem(this.activeTrainerKey)
+    localStorage.removeItem(ACTIVE_TRAINER_KEY)
   }
 
   findTrainer(name: string): Trainer | undefined {
-    const stored =  localStorage.getItem(this.trainersKey)
+    const stored =  localStorage.getItem(TRAINER_KEY)
     if(stored) {
       const trainers: Trainer[] = JSON.parse(stored)
       return trainers.find((trainer: Trainer) => trainer.name === name)
