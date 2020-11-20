@@ -13,8 +13,6 @@ import { MenuComponent } from './menu/menu.component';
 import { StorageService } from './services/storage.service';
 import { AuthService } from './services/auth.service';
 import { FetchService } from './services/fetch.service';
-
-
 import { SelectTrainerComponent } from './pages/select-trainer/select-trainer.component';
 import { TrainerComponent } from './pages/trainer/trainer.component';
 
