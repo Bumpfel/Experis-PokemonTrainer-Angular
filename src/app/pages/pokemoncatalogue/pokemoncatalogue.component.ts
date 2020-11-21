@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from 'src/app/models/pokemon';
+import { AuthService } from 'src/app/services/auth.service';
 import { FetchService } from 'src/app/services/fetch.service';
 
 @Component({
@@ -10,25 +11,25 @@ import { FetchService } from 'src/app/services/fetch.service';
 })
 export class PokemonCatalogueComponent implements OnInit {
 
-  pokemons: Pokemon[] | undefined;
-  detailId = this.route.snapshot.params['id'];
+  pokemons: Pokemon[] = [];
+  currentPage: number = 0
+  maxPage: number = 0
 
-  constructor(private fetchService: FetchService, public route: ActivatedRoute) {
-    console.log(this.fetchService);
-   }
-
-  ngOnInit(): void {
-    
-    this.fetchService.getPokemons().then(data => {
-    this.pokemons = data;
-    });
-  
+  constructor(private fetchService: FetchService, public route: ActivatedRoute, private authService: AuthService) {
   }
 
-  getDetails(id: any) {
-    this.fetchService.getPokemon(id).then(data => {
-      this.pokemons = [data];
-    });
-    }
+  ngOnInit(): void {
+    this.getPokemons(0)
+  }
+
+  async getPokemons(page: number) {
+    const data = await this.fetchService.getPokemons(page)
+    this.maxPage = data.maxPage
+    this.pokemons = data.pokemons;
+  }
+
+  get isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
 
 }

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // Components
 import { AppComponent } from './app.component';
@@ -16,7 +17,8 @@ import { AuthService } from './services/auth.service';
 import { FetchService } from './services/fetch.service';
 import { SelectTrainerComponent } from './pages/select-trainer/select-trainer.component';
 import { TrainerComponent } from './pages/trainer/trainer.component';
-
+import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,15 @@ import { TrainerComponent } from './pages/trainer/trainer.component';
     SelectTrainerComponent,
     TrainerComponent,
     MenuComponent,
+    PokemonCardComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     FetchService,
