@@ -1,5 +1,3 @@
-<div class="container">
-<app-pokemon-card *ngFor="let pokemon of pokemons" id="pokemon-card" [pokemon]="pokemon" [showCollectButton]="isLoggedIn">
-    
-</app-pokemon-card> 
-</div>
+<app-pagination [maxPage]="maxPage" (page)="getPokemons($event - 1)"></app-pagination>
+<app-pokemon-card *ngFor="let pokemon of pokemons" id="pokemon-card" [pokemon]="pokemon" [showCollectButton]="isLoggedIn"></app-pokemon-card> 
+<app-pagination [maxPage]="maxPage"></app-pagination>
