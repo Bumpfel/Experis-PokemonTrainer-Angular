@@ -44,8 +44,8 @@ export class PaginationComponent implements OnInit {
 
   ngOnChanges() {
     // if maxPage is async, this property will the change after initialization
-    if (this.maxPage > 0) {
-      this.setMiddleSectionButtons()     
+    if (this.maxPage > 1) {
+      this.setMiddleSectionButtons()
     }
   }
 

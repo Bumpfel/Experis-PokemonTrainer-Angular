@@ -2,6 +2,6 @@
 
 <app-pagination [maxPage]="maxPage" (page)="paginate($event - 1)"></app-pagination>
 
-<p>Collected pokemons: {{ trainer?.pokemons?.length }}</p>
+<p>Collected pokemons: {{ trainer?.pokemons?.length || 'none' }}</p>
 <app-pokemon-card *ngFor="let pokemon of paginatedPokemons" id="pokemon-card" [pokemon]="pokemon"></app-pokemon-card>
 <app-pagination [maxPage]="maxPage"></app-pagination>
