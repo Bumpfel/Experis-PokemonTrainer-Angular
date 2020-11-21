@@ -2,9 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
 
-# About
+## About
 
-This is a web application built with Angular. It lets a user choose a trainer name, view Pokemons and their details and even collect them. 
+This is a web application built with Angular that uses an external API to list pokemons. It lets a user choose a trainer name, view Pokemons and their details and even collect them. [Assignment instructions](instructions.pdf).
+
+## Deployed Project
+
+https://pokemon-angular-application.herokuapp.com/
 
 ## Development server
 
