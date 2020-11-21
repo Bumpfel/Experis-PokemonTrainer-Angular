@@ -29,11 +29,11 @@ export class SelectTrainerComponent implements OnInit {
    return this.loginForm.get('trainername' );
  }
 
-  login(): void {
-    if(this.authService.login(this.loginForm.value)) {
-      this.redirect()
-    }
+ login(name: string): void {
+  if(this.authService.login(name)) {
+    this.redirect()
   }
+}
 
   logout() {
     this.authService.logout()
