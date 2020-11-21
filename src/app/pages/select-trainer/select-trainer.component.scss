@@ -1,0 +1,43 @@
+img {
+    height: 300px;
+    width: 500px;
+}
+
+label {
+    margin: 0 0 0 10%;
+}
+
+.trainer-class {
+    display: block;
+    text-align: center;
+    margin: 10%;
+    color: #ffffff;
+}
+
+.trainer-class > .form-group > input {
+    border: 5%;
+    margin: 0 0 0 10%;
+    text-align: center;
+    width: 500px;
+}
+
+.background {
+    background-image: url("../../../assets/img/forest.png");
+    background-size: 1200px 700px;
+    border-style: groove;
+    margin: 5%;
+}
+
+.input-error{
+    color: #ffffff;
+}
+
+button{
+    background-color: #ffffff;
+    color: #000000;
+    margin: 0 0 0 10%;
+}
+
+.validators{
+    margin: 0 0 0 10%;
+}
