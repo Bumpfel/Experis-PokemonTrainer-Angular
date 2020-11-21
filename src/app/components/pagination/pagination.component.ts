@@ -12,20 +12,20 @@ export class PaginationComponent implements OnInit {
 
   @Output() page: EventEmitter<number> = new EventEmitter<number>()
   @Input() maxPage: number = 0
-  
-  currentPage: number = 0
+
+  currentPage: number = 1
   pageButtons: number[] = []
   isLoaded = false
-  
+
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
       const pageParam = params.get('page')
 
-      if(pageParam) {
+      if (pageParam) {
         const page = parseInt(pageParam)
-        if(!isNaN(page)) {
+        if (!isNaN(page)) {
           this.currentPage = page
           this.page.emit(page)
           this.setMiddleSectionButtons()
@@ -36,8 +36,8 @@ export class PaginationComponent implements OnInit {
 
   ngOnChanges() {
     // if maxPage is async, this property will the change after initialization
-    if(this.maxPage > 0) {
-      this.setMiddleSectionButtons()
+    if (this.maxPage > 0) {
+      this.setMiddleSectionButtons()     
     }
   }
 
@@ -47,20 +47,20 @@ export class PaginationComponent implements OnInit {
 
     const half = Math.floor(nrOfButtons / 2)
     // calculates which page the middle page buttons should start on to always show <NR_OF_BUTTONS> buttons
-    const startPage = Math.max(0, Math.max(0, this.currentPage - half) + Math.min(0, this.maxPage - this.currentPage - half + (nrOfButtons % 2 === 0 ? 1 : 0)))
+    const startPage = Math.max(1, Math.max(1, this.currentPage - half) + Math.min(0, this.maxPage - this.currentPage - half + (nrOfButtons % 2 === 0 ? 1 : 0)))
 
-    for(let page = startPage; page < startPage + nrOfButtons; page ++) {
+    for (let page = startPage; page < startPage + nrOfButtons; page++) {
       this.pageButtons.push(page)
     }
     this.isLoaded = true
   }
 
   get hidePrevButton() {
-    return this.currentPage <= 0
+    return this.currentPage <= 1
   }
 
   get hideFirstPageButton() {
-    return this.pageButtons[0] === 0
+    return this.pageButtons[0] === 1
   }
 
   get hideLastPageButton() {

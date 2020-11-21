@@ -20,7 +20,7 @@ export class FetchService {
     const data: any = await this.httpClient.get(`${environment.apiUrl}/pokemon?limit=${this.fetchLimit}&offset=${offset}`).toPromise()
     const results = data.results
     
-    const maxPage = Math.floor((data.count - 1) / this.fetchLimit)
+    const maxPage = Math.ceil((data.count - 1) / this.fetchLimit)
    
     for(let i = 0; i < results.length; i ++) {
       const pokemon = results[i]

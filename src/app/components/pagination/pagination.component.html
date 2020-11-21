@@ -3,17 +3,17 @@
     <button [class.hidden]="hidePrevButton" class="btn btn-outline-secondary" routerLink="/pokemons"
       [queryParams]="{ page: currentPage - 1 }">Prev</button>
     <button [class.hidden]="hideFirstPageButton" class="btn btn-outline-secondary" [class.active]="currentPage === 0"
-      routerLink="/pokemons" [queryParams]="{ page: 0 }">1</button>
+      routerLink="/pokemons" [queryParams]="{ page: 1 }">1</button>
   </div>
 
   <div class="btn-group">
     <button *ngFor="let page of pageButtons" class="btn btn-outline-secondary midSection" [class.active]="currentPage === page"
-      routerLink="/pokemons" [queryParams]="{ page: page }">{{ page + 1 }}</button>
+      routerLink="/pokemons" [queryParams]="{ page: page }">{{ page }}</button>
   </div>
 
   <div class="btn-group ml-3">
     <button [class.hidden]="hideLastPageButton" class="btn btn-outline-secondary" [class.active]="currentPage === maxPage"
-      routerLink="/pokemons" [queryParams]="{ page: maxPage }">{{ maxPage + 1}}</button>
+      routerLink="/pokemons" [queryParams]="{ page: maxPage }">{{ maxPage }}</button>
     <button [class.hidden]="hideNextButton" class="btn btn-outline-secondary" routerLink="/pokemons"
       [queryParams]="{ page: currentPage + 1 }">Next</button>
   </div>
