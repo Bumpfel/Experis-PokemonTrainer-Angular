@@ -22,5 +22,9 @@ export class PokemonDetailsComponent implements OnInit {
       this.pokemons = [data];
     });
   }
+
+  goBack() {
+    window.history.go(-1)
+  }
   
 }

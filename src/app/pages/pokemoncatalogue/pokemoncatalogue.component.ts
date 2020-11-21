@@ -11,7 +11,7 @@ import { FetchService } from 'src/app/services/fetch.service';
 })
 export class PokemonCatalogueComponent implements OnInit {
 
-  pokemons: Pokemon[] | undefined;
+  pokemons: Pokemon[] = [];
   currentPage: number = 0
   maxPage: number = 0
 

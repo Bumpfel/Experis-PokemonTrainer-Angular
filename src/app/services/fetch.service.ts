@@ -4,23 +4,24 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Pokemon } from '../models/pokemon';
 
+const FETCH_LIMIT = 20
+
 @Injectable({
   providedIn: 'root'
 })
 export class FetchService {
-
-  private fetchLimit = 20
+  
 
   constructor(private httpClient: HttpClient) { }
 
   async getPokemons(page: number = 0): Promise<{ maxPage: number, pokemons: Pokemon[] }> {
-    const offset = page * this.fetchLimit
+    const offset = page * FETCH_LIMIT
     let pokemons: Pokemon[] = []
 
-    const data: any = await this.httpClient.get(`${environment.apiUrl}/pokemon?limit=${this.fetchLimit}&offset=${offset}`).toPromise()
+    const data: any = await this.httpClient.get(`${environment.apiUrl}/pokemon?limit=${FETCH_LIMIT}&offset=${offset}`).toPromise()
     const results = data.results
     
-    const maxPage = Math.ceil((data.count - 1) / this.fetchLimit)
+    const maxPage = Math.ceil(data.count / FETCH_LIMIT)
    
     for(let i = 0; i < results.length; i ++) {
       const pokemon = results[i]

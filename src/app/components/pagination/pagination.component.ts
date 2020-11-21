@@ -13,6 +13,8 @@ export class PaginationComponent implements OnInit {
   @Output() page: EventEmitter<number> = new EventEmitter<number>()
   @Input() maxPage: number = 0
 
+  currentRoute: string = ''
+
   currentPage: number = 1
   pageButtons: number[] = []
   isLoaded = false
@@ -20,6 +22,12 @@ export class PaginationComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // get route
+    this.route.url.subscribe(segments => {
+      this.currentRoute = '/' + segments.map(segment => segment.path).join('/')
+    })
+    
+    // subscribe to page query param
     this.route.queryParamMap.subscribe(params => {
       const pageParam = params.get('page')
 
