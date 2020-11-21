@@ -18,6 +18,7 @@ import { FetchService } from './services/fetch.service';
 import { SelectTrainerComponent } from './pages/select-trainer/select-trainer.component';
 import { TrainerComponent } from './pages/trainer/trainer.component';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.com
     TrainerComponent,
     MenuComponent,
     PokemonCardComponent,
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,
