@@ -25,7 +25,7 @@
         <div id="moves">
             <p>Moves: </p>
             <p>{{ pokemon.moves }}</p>
-            <a [routerLink]="['/pokemons/']"><button class="backButton">Go back</button></a>
+            <button (click)="goBack()" class="backButton">Go back</button>
         </div>
     </div>
 </div>
