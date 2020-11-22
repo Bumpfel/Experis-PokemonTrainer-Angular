@@ -22,11 +22,11 @@ export class TrainerService {
     this.storageService.save(trainer, false);
   }
 
-  hasPokemon(pokemon: Pokemon): boolean {
-    const trainer = this.storageService.getActiveTrainer() as Trainer
-    if (!trainer.pokemons){
+  hasPokemon(pokemon: Pokemon): boolean{
+    const trainer = this.storageService.getActiveTrainer()
+    if (!trainer || !trainer.pokemons) {
       return false;
-    }  
+    }
 
     const foundPokemon = trainer.pokemons.find((collected: Pokemon) => collected.id === pokemon.id);
     return Boolean(foundPokemon);

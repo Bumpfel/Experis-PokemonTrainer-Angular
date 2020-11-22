@@ -3,9 +3,9 @@
     <img src="../../../assets/img/ash.png">
     <div class="form-group">
         <label for="trainername">Log in to an existing trainer or create a new one</label>
-        <input  id="trainername" type="text" placeholder="Enter a trainer name" formControlName="trainername">
+        <input id="trainername" type="text" placeholder="Enter a trainer name" formControlName="trainername">
     </div>
-    <div *ngIf=" trainername?.invalid  && (trainername?.dirty || trainername?.touched)" class="validators">
+    <div *ngIf="trainername?.invalid && (trainername?.dirty || trainername?.touched)" class="validators">
         <div *ngIf="trainername?.errors?.required">
             Trainer name is required
         </div>
