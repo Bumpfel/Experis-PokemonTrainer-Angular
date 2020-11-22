@@ -1,4 +1,4 @@
-<div id="pokemon-card">
+<div [class.disabled]="disabled" id="pokemon-card">
     <div>
     <p> {{ pokemon.name }} 
         <span *ngIf="pokemon.id<=9">#00{{ pokemon.id }}</span>
@@ -7,6 +7,7 @@
     </p> 
     <a [routerLink]="['/pokemons/details/',pokemon.id]"><img src = "{{pokemon.imgUrl}}"></a>
     <br>
-    <button *ngIf="showCollectButton && !acquiredPokemon" class="button" (click)="addPokemon()">I choose you!</button>
+    <button [disabled]="disabled" *ngIf="showCollectButton && !acquiredPokemon" class="button" (click)="addPokemon()">I choose you!</button>
+    <button disabled *ngIf="acquiredPokemon">Pokemon collected</button>
     </div>
 </div>

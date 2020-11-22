@@ -1,3 +1,6 @@
-<app-pagination [maxPage]="maxPage" (page)="getPokemons($event - 1)"></app-pagination>
-<app-pokemon-card *ngFor="let pokemon of pokemons" id="pokemon-card" [pokemon]="pokemon" [showCollectButton]="isLoggedIn"></app-pokemon-card> 
+<app-pagination [maxPage]="maxPage" (page)="fetchPokemons($event - 1)"></app-pagination>
+<div *ngIf="!isLoaded">
+    Loading...
+</div>
+<app-pokemon-card [disabled]="!isLoaded" *ngFor="let pokemon of pokemons" id="pokemon-card" [pokemon]="pokemon" [showCollectButton]="isLoggedIn"></app-pokemon-card> 
 <app-pagination [maxPage]="maxPage"></app-pagination>

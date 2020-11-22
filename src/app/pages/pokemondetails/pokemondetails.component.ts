@@ -10,21 +10,17 @@ import { FetchService } from 'src/app/services/fetch.service';
 })
 export class PokemonDetailsComponent implements OnInit {
 
-  pokemons: Pokemon[] | undefined;
-  detailId = this.route.snapshot.params['id'];
-
-
+  pokemon: Pokemon | undefined;
+  
   constructor(private fetchService: FetchService, public route: ActivatedRoute) {
-   }
-
-  ngOnInit(): void {
-      this.fetchService.getPokemon(this.detailId).then(data => {
-      this.pokemons = [data];
-    });
-  }
-
-  goBack() {
-    window.history.go(-1)
   }
   
+  async ngOnInit(): Promise<void> {
+    const id = this.route.snapshot.params['id'];
+    this.pokemon = await this.fetchService.getPokemon(id)
+  }
+
+  goBack(): void {
+    window.history.go(-1)
+  }
 }
