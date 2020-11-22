@@ -11,7 +11,6 @@ const FETCH_LIMIT = 20
 })
 export class FetchService {
   
-
   constructor(private httpClient: HttpClient) { }
 
   async getPokemons(page: number = 0): Promise<{ maxPage: number, pokemons: Pokemon[] }> {

@@ -11,9 +11,9 @@ export class TrainerService {
 
   pokemon: Pokemon[] | undefined;
 
-  constructor(private storageService: StorageService, private route: ActivatedRoute) { }
+  constructor(private storageService: StorageService) { }
 
-  addPokemon(pokemon: Pokemon){
+  addPokemon(pokemon: Pokemon): void {
     const trainer = this.storageService.getActiveTrainer() as Trainer
     if (!trainer.pokemons){
       trainer.pokemons = [] 
@@ -22,13 +22,13 @@ export class TrainerService {
     this.storageService.save(trainer, false);
   }
 
-  hasPokemon(pokemon: Pokemon): boolean{
+  hasPokemon(pokemon: Pokemon): boolean {
     const trainer = this.storageService.getActiveTrainer() as Trainer
     if (!trainer.pokemons){
       return false;
     }  
 
-    const foundPokemon = trainer.pokemons.find((chosenPokemon:Pokemon) => chosenPokemon.id === pokemon.id);
+    const foundPokemon = trainer.pokemons.find((collected: Pokemon) => collected.id === pokemon.id);
     return Boolean(foundPokemon);
   }
 
