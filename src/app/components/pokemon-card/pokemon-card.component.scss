@@ -27,7 +27,7 @@
     margin: 5% 10%;
 }
 
-.button:hover {
+.button:enabled:hover {
     background-color: #3B4CCA;
 }
 
@@ -53,4 +53,8 @@ img:active {
 
 p::first-letter {
     text-transform: uppercase;
+}
+
+.disabled {
+    opacity: .6;
 }

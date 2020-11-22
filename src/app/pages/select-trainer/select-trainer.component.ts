@@ -11,8 +11,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class SelectTrainerComponent implements OnInit {
 
-  private _activeTrainer: Trainer | undefined
-
   loginForm: FormGroup = new FormGroup({
     trainername : new FormControl('', [Validators.required, Validators.minLength(2)])
   });
@@ -26,14 +24,14 @@ export class SelectTrainerComponent implements OnInit {
   }
   
  get trainername(){
-   return this.loginForm.get('trainername' );
+   return this.loginForm.get('trainername');
  }
 
- login(): void {
-  if(this.authService.login(this.loginForm.value.trainername)) {
-    this.redirect()
+  login(): void {
+    if(this.loginForm.valid && this.authService.login(this.loginForm.value.trainername)) {
+      this.redirect()
+    }
   }
-}
 
   logout() {
     this.authService.logout()

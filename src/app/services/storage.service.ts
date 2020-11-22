@@ -41,7 +41,7 @@ export class StorageService {
     return undefined
   }
 
-  resetActiveTrainer() {
+  resetActiveTrainer(): void {
     localStorage.removeItem(ACTIVE_TRAINER_KEY)
   }
 

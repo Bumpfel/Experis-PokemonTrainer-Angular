@@ -22,7 +22,7 @@ export class AuthService {
     return true
   }
 
-  logout() {
+  logout(): void {
     this.storageService.resetActiveTrainer()
   }
 

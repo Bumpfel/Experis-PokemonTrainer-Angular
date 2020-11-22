@@ -14,22 +14,29 @@ export class PokemonCatalogueComponent implements OnInit {
   pokemons: Pokemon[] = [];
   currentPage: number = 0
   maxPage: number = 0
+  isLoaded = false
 
   constructor(private fetchService: FetchService, public route: ActivatedRoute, private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.getPokemons(0)
   }
 
-  async getPokemons(page: number) {
+  async fetchPokemons(page: number): Promise<void> {
+    this.isLoaded = false
+    this.currentPage = page
     const data = await this.fetchService.getPokemons(page)
-    this.maxPage = data.maxPage
-    this.pokemons = data.pokemons;
+    
+    // due to async requests, results can come back in "incorrect" order, thus showing the wrong page
+    // this makes sure the latest requested page data is shown
+    if(page === this.currentPage) {
+      this.maxPage = data.maxPage
+      this.pokemons = data.pokemons;
+      this.isLoaded = true
+    }
   }
 
-  get isLoggedIn() {
+  get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
-
 }

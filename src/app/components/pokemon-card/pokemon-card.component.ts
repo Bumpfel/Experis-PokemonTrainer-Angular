@@ -11,17 +11,18 @@ export class PokemonCardComponent implements OnInit {
 
   @Input() pokemon: Pokemon = {} as Pokemon;
   @Input() showCollectButton: boolean = false;
+  @Input() disabled: boolean = false;
 
   constructor(private trainerService: TrainerService) { }
 
   ngOnInit(): void {
   }
 
-  addPokemon(){
+  addPokemon(): void {
     this.trainerService.addPokemon(this.pokemon);
   }
 
-  get acquiredPokemon(){
+  get acquiredPokemon(): boolean {
     return this.trainerService.hasPokemon(this.pokemon);
   }
 
