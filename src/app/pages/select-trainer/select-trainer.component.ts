@@ -29,8 +29,8 @@ export class SelectTrainerComponent implements OnInit {
    return this.loginForm.get('trainername' );
  }
 
- login(name: string): void {
-  if(this.authService.login(name)) {
+ login(): void {
+  if(this.authService.login(this.loginForm.value.trainername)) {
     this.redirect()
   }
 }
