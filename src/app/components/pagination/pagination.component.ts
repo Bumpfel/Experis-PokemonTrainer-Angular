@@ -14,7 +14,6 @@ export class PaginationComponent implements OnInit {
   @Input() maxPage: number = 0
 
   currentRoute: string = ''
-
   currentPage: number = 1
   pageButtons: number[] = []
   isLoaded = false
@@ -22,7 +21,12 @@ export class PaginationComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // get route
+    // if page query param is not set, emit 1
+    if(!this.route.snapshot.queryParamMap.get('page')) {
+      this.page.emit(this.currentPage)
+    }
+
+    // get route (used for routerlinks making this component re-usable)
     this.route.url.subscribe(segments => {
       this.currentRoute = '/' + segments.map(segment => segment.path).join('/')
     })
@@ -42,14 +46,14 @@ export class PaginationComponent implements OnInit {
     })
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     // if maxPage is async, this property will the change after initialization
     if (this.maxPage > 1) {
       this.setMiddleSectionButtons()
     }
   }
 
-  setMiddleSectionButtons() {
+  setMiddleSectionButtons(): void {
     this.pageButtons = []
     const nrOfButtons = Math.min(NR_OF_BUTTONS, this.maxPage)
 
@@ -63,19 +67,19 @@ export class PaginationComponent implements OnInit {
     this.isLoaded = true
   }
 
-  get hidePrevButton() {
+  get hidePrevButton(): boolean {
     return this.currentPage <= 1
   }
 
-  get hideFirstPageButton() {
+  get hideFirstPageButton(): boolean {
     return this.pageButtons[0] === 1
   }
 
-  get hideLastPageButton() {
+  get hideLastPageButton(): boolean {
     return this.pageButtons[this.pageButtons.length - 1] === this.maxPage
   }
 
-  get hideNextButton() {
+  get hideNextButton(): boolean {
     return this.currentPage >= this.maxPage
   }
 }
