@@ -1,7 +1,18 @@
-<form (ngSubmit)="login(name.value)">
+<div class="background">
+<form [formGroup]="loginForm" class="trainer-class">
+    <img src="../../../assets/img/ash.png">
     <div class="form-group">
-        <label for="trainerName">Log in to an existing trainer or create a new one</label>
-        <input class="form-control" style="max-width: 400px;" type="text" id="trainerName" placeholder="Enter a trainer name" #name>
+        <label for="trainername">Log in to an existing trainer or create a new one</label>
+        <input  id="trainername" type="text" placeholder="Enter a trainer name" formControlName="trainername">
     </div>
-    <button class="btn btn-outline-secondary">log in</button>
+    <div *ngIf=" trainername?.invalid  && (trainername?.dirty || trainername?.touched)" class="validators">
+        <div *ngIf="trainername?.errors?.required">
+            Trainer name is required
+        </div>
+        <div *ngIf="trainername?.errors?.minlength">
+            Trainer name must be at least 2 characters long
+        </div>
+    </div>
+    <button class="btn btn-outline-secondary" (click)="login()">Let's Go!</button>
 </form>
+</div>
