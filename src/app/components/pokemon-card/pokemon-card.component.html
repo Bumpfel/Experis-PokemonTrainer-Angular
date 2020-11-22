@@ -8,6 +8,6 @@
     <a [routerLink]="['/pokemons/details/',pokemon.id]"><img src = "{{pokemon.imgUrl}}"></a>
     <br>
     <button [disabled]="disabled" *ngIf="showCollectButton && !acquiredPokemon" class="button" (click)="addPokemon()">I choose you!</button>
-    <button disabled *ngIf="acquiredPokemon">Pokemon collected</button>
+    <button disabled *ngIf="showCollectButton && acquiredPokemon">Pokemon collected</button>
     </div>
 </div>
